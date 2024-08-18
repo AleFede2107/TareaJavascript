@@ -216,3 +216,55 @@ comprobacionTemperatura(degreeCels);
 
 //Ejercicio 10
 
+let inputEdades = prompt('ingrese las edades de los estudiantes separados por ",": ');
+
+const edades = inputEdades.split(",");
+
+const edadesNumeros = edades.map(number => {
+    return Number(number);
+});
+
+const edadesAM = [edadesNumeros[0], edadesNumeros[1], edadesNumeros[2], edadesNumeros[3], edadesNumeros[4]];
+
+const edadesMD = [edadesNumeros[5],edadesNumeros[6],edadesNumeros[7],edadesNumeros[8],edadesNumeros[9],edadesNumeros[10]];
+
+const edadesPM = [edadesNumeros[11],edadesNumeros[12],edadesNumeros[13],edadesNumeros[14],edadesNumeros[15],edadesNumeros[16]
+                    ,edadesNumeros[17],edadesNumeros[18],edadesNumeros[19],edadesNumeros[20],edadesNumeros[21]];
+
+const sumaEdades = (array) => {
+    let suma = 0;
+
+    array.forEach(number => {
+        suma = suma + number;
+    });
+
+    return suma;
+};
+
+const promedioEdades = (array) => {
+    let promedio = sumaEdades(array) / array.length;
+
+    return promedio;
+};
+
+let promedioAM = promedioEdades(edadesAM);
+let promedioMD = promedioEdades(edadesMD);
+let promedioPM = promedioEdades(edadesPM);
+
+const promedioMayor = (am, md, pm) => {
+    if((am > md) && (am > pm)) {
+        return 'El turno de la AM tiene en mayor promedio';
+    } else if((md > am) && (md > pm)){
+        return 'El turno de la tarde tiene mayor promedio';
+    }else if ((pm > am) && (pm > md)){
+        return 'El turno de la noche tiene mayor promedio';
+    }else {
+        return 'Uno o mas promedios son iguales';
+    }
+};
+
+console.log(`El promedio de la manana es: ${promedioAM}\n
+        El promedio de la tarde es: ${promedioMD}\n
+        EL promedio de la noche es: ${promedioPM}\n
+        ${promedioMayor(promedioAM,promedioMD,promedioPM)}`);
+
